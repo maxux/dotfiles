@@ -1,0 +1,51 @@
+# Customize panes borders
+set -g pane-border-style "fg=#555555"
+set -g pane-active-border-style "fg=#ffffff,bold"
+
+# Improve status bar
+set -g status on
+set -g status-interval 30
+
+# Prevent truncating Session Name
+set -g status-justify left
+set -g status-left-length 0
+
+set -g @primary-bg "#290020"
+set -g @primary-fg "#ffffff"
+set -g @prod-bg "#fab4b4"
+set -g @session-bg "#940101"
+set -g @date-bg "#800942"
+set -g @hour-bg "#2e0073"
+
+set -g -F @left-prod-power "#[bg=#{@session-bg},fg=#{@prod-bg}]"
+set -g -F @left-prod-fmt "#[bg=#{@prod-bg},fg=#000000,bold]  P R O D U C T I O N  "
+
+set -g -F @left-out-power "#[bg=#{@primary-bg},fg=#{@session-bg}] "
+set -g -F @left-sess-fmt "#[bg=#{@session-bg},fg=#{@primary-fg},bold]"
+
+set -g -F @win-in-power "#[bg=#{@primary-bg},fg=#999999]"
+set -g -F @win-act-in-power "#[bg=#{@primary-bg},fg=#{@primary-fg},bold]"
+
+set -g -F @win-out-power "#[bg=#{@primary-bg},fg=#{@primary-fg}]"
+
+set -g -F @right-in-power "#[bg=#{@primary-bg},fg=#{@date-bg}]"
+set -g -F @hour-in-power "#[bg=#{@date-bg},fg=#{@hour-bg}]"
+
+set -g -F @right-date-fmt "#[bg=#{@date-bg},fg=#{@primary-fg}]"
+set -g -F @right-hour-fmt "#[bg=#{@hour-bg},fg=#{@primary-fg},bold]"
+
+set -g @window-status-fmt "[#I] #{pane_title} #{?window_flags,#{window_flags}, }"
+
+# Global status line colors
+# set -g status-style "fg=#ffffff,bg=#{E:@primary-bg}"
+set -g -F status-style "bg=#{E:@primary-bg}"
+
+# Windows List
+set -g window-status-format "#{@win-in-power}#{E:@window-status-fmt} #{@win-out-power}"
+set -g window-status-current-format "#{@win-act-in-power}#{E:@window-status-fmt} #{@win-out-power}"
+
+# Session Name
+set -g status-left "#{@left-prod-fmt}#{@left-prod-power}#{@left-sess-fmt} #S #{@left-out-power}"
+
+# Date and Time
+set -g status-right '#{@right-in-power}#{@right-date-fmt} %d %b #{@hour-in-power}#{@right-hour-fmt} %H:%M '
